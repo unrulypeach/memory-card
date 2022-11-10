@@ -3,7 +3,7 @@ import React from 'react';
 function App() {
   return (
     <div className="App">
-      <p>poo</p>
+      <h1>Memory Card Game</h1>
     </div>
   );
 }
