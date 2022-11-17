@@ -1,13 +1,19 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-console */
 import React, { useState, useEffect } from 'react';
+import Gameboard from './Components/Gameboard';
 import Score from './Components/Score';
-import CardPicker from './Components/CardPicker';
+import Card from './Components/Card';
+import FiveRandNum from './Utils/FiveRandNum';
 
 function App() {
   // eslint-disable-next-line no-unused-vars
-  const [cardData, setCardData] = useState();
-  // const [board, setBoard] = useState();
+  const [allCardData, setAllCardData] = useState([]);
+  const [pickedNums, setPickedNums] = useState([]);
+  const [pickedCards, setPickedCards] = useState([]);
 
   useEffect(() => {
+    console.log('first');
     (async function getCards() {
       const options = {
         method: 'GET',
@@ -20,7 +26,7 @@ function App() {
         const response = await fetch('https://omgvamp-hearthstone-v1.p.rapidapi.com/cards/sets/Battlegrounds', options);
         const data = await response.json();
         const filteredData = await data.filter((card) => card.img !== undefined && card.type === 'Hero');
-        setCardData(filteredData);
+        setAllCardData(filteredData);
       } catch (e) {
         // eslint-disable-next-line no-console
         console.error(e);
@@ -28,15 +34,26 @@ function App() {
     }());
   }, []);
 
-  // useEffect(() => {})
+  useEffect(() => {
+    console.log('second');
+    setPickedNums(FiveRandNum());
+  }, []);
+
+  useEffect(() => {
+    console.log('third');
+    const list = pickedNums.map((ind) => (
+      <Card name={allCardData[ind].name} img={allCardData[ind].img} />
+    ));
+    setPickedCards(list);
+  }, []);
 
   return (
     <div className="App">
       <h1>Memory Card Game</h1>
       <h2>Hearthstone Battlegrounds Heroes</h2>
       <Score />
-      <CardPicker
-        cards={cardData}
+      <Gameboard
+        cards={pickedCards}
       />
     </div>
   );
