@@ -1,3 +1,4 @@
+/* eslint-disable prefer-destructuring */
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-console */
 import React, { useState, useEffect } from 'react';
@@ -7,13 +8,13 @@ import Card from './Components/Card';
 import FiveRandNum from './Utils/FiveRandNum';
 
 function App() {
-  // eslint-disable-next-line no-unused-vars
   const [allCardData, setAllCardData] = useState([]);
   const [pickedNums, setPickedNums] = useState([]);
   const [pickedCards, setPickedCards] = useState([]);
+  const [clicked, setClicked] = useState([false]);
 
   useEffect(() => {
-    console.log('first');
+    let isCancelled = false;
     (async function getCards() {
       const options = {
         method: 'GET',
@@ -26,12 +27,19 @@ function App() {
         const response = await fetch('https://omgvamp-hearthstone-v1.p.rapidapi.com/cards/sets/Battlegrounds', options);
         const data = await response.json();
         const filteredData = await data.filter((card) => card.img !== undefined && card.type === 'Hero');
-        setAllCardData(filteredData);
+        if (!isCancelled) {
+          setAllCardData(filteredData);
+          console.log('data fetched');
+        }
       } catch (e) {
-        // eslint-disable-next-line no-console
         console.error(e);
       }
     }());
+
+    return () => {
+      isCancelled = true;
+      console.log('aborted');
+    };
   }, []);
 
   useEffect(() => {
@@ -42,19 +50,24 @@ function App() {
   useEffect(() => {
     console.log('third');
     const list = pickedNums.map((ind) => (
-      <Card name={allCardData[ind].name} img={allCardData[ind].img} />
+      <Card
+        name={allCardData[ind].name}
+        key={allCardData[ind].dbfId}
+        img={(allCardData[ind].imgGold !== undefined
+          ? allCardData[ind].imgGold : allCardData[ind].img)}
+      />
     ));
     setPickedCards(list);
-  }, []);
+  }, [allCardData]);
 
   return (
     <div className="App">
       <h1>Memory Card Game</h1>
       <h2>Hearthstone Battlegrounds Heroes</h2>
       <Score />
-      <Gameboard
-        cards={pickedCards}
-      />
+      <div className="flex">
+        {pickedCards}
+      </div>
     </div>
   );
 }
