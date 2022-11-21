@@ -1,5 +1,15 @@
 export default function FiveRandNum() {
   const arr = [];
-  for (let i = 0; i < 5; i += 1) arr.push(Math.floor(Math.random() * 94));
+  while (arr.length < 5) {
+    const num = Math.floor(Math.random() * 94);
+    if (arr.indexOf(num) === -1
+    && num !== 6
+    && num !== 26
+    && num !== 37
+    && num !== 51
+    && num !== 58
+    && num !== 75
+    && num !== 85) arr.push(num);
+  }
   return arr;
 }

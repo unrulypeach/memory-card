@@ -1,18 +1,23 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 
-export default function Card({ name, img }) {
+export default function Card({
+  name, img, setNewNums, checkWin,
+}) {
   return (
-    <div className="flex-1">
+    <button
+      type="button"
+      className="flex flex-col items-center flex-1"
+      onClick={() => { checkWin(); setNewNums(); }}
+    >
       <img
         alt={name}
         src={img}
-        height="200px"
-        width="200px"
+        width="250px"
       />
-      <div>
+      <div className="text-xl">
         {name}
       </div>
-    </div>
+    </button>
   );
 }
