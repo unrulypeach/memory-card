@@ -2,6 +2,10 @@
 
 This memory game was made with React to practice the useEffect hook. The images and art all belong to Blizzard.  
 
+## Demo
+
+Play the game here: https://unrulypeach.github.io/memory-card/
+
 ## Getting Started
 
 ### Setup
@@ -13,6 +17,6 @@ npm run start
 ```
 
 ## Built with
-**React**
-**Tailwind CSS**
+**React** //
+**Tailwind CSS** //
 **Hearthstone API***
