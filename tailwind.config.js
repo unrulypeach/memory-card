@@ -7,6 +7,7 @@ module.exports = {
     colors: {
       translucentGrey: 'rgba(135, 145, 155, 90%)',
       turq: '#51d6ed',
+      black: '#000',
     },
     extend: {},
   },
