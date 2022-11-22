@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/memory-card/static/css/main.fe9ae5db.css",
+    "main.js": "/memory-card/static/js/main.0a0097e7.js",
+    "static/media/UnitedinStormwind_007.jpg": "/memory-card/static/media/UnitedinStormwind_007.6810aa0ce62210dc2426.jpg",
+    "static/media/hsbglogo.png": "/memory-card/static/media/hsbglogo.104a8d79167f1ef2eacf.png",
+    "index.html": "/memory-card/index.html",
+    "main.fe9ae5db.css.map": "/memory-card/static/css/main.fe9ae5db.css.map",
+    "main.0a0097e7.js.map": "/memory-card/static/js/main.0a0097e7.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.fe9ae5db.css",
+    "static/js/main.0a0097e7.js"
+  ]
+}
